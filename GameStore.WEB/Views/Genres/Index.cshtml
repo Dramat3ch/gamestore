@@ -1,0 +1,31 @@
+@model GameStore.WEB.ViewModels.Genres.IndexViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Genres list</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var genre in Model.Genres)
+    {
+        <tr>
+            <td>
+                @genre.Name
+            </td>
+            <td>
+                <a asp-controller="Genres" asp-action="Delete" asp-route-id="@genre.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

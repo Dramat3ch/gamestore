@@ -1,0 +1,48 @@
+@model GameStore.WEB.ViewModels.Games.IndexViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Games list</h2>
+
+<form method="post" asp-controller="Games" asp-action="Create">
+    <div class="mb-3">
+        <label for="gameName">Name</label>
+        <input id="gameName" type="text" class="form-control" name="gameName">
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+    </div>
+</form>
+
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var game in Model.Games)
+    {
+        <tr>
+            <td>
+                @game.Name
+            </td>
+            <td>
+                @string.Join(", ", game.Genres.Select(genre => genre.Name))
+            </td>
+            <td>
+                <a asp-controller="Games" asp-action="Delete" asp-route-id="@game.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

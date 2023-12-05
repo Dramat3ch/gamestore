@@ -1,0 +1,16 @@
+@model GameStore.WEB.ViewModels.Games.DeleteViewModel
+
+@{
+    ViewBag.Title = "Delete confirmation";
+    Layout = "_Layout";
+}
+
+<h2>Confirmation</h2>
+
+<form method="post" asp-controller="Games" asp-action="Delete">
+    <input asp-for="Game.Id" type="hidden"/>
+
+    <p>Are you sure want to delete game @Model.Game.Name?</p>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
